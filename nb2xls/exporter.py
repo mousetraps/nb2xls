@@ -71,7 +71,7 @@ class XLSExporter(Exporter):
         """
         return '.xlsx'
 
-    def from_notebook_node(self, nb, workbook=None, worksheet=None, resources=None, **kw):
+    def from_notebook_node(self, nb, input_workbook=None, input_worksheet=None, resources=None, **kw):
         """
         Convert a notebook from a notebook node instance.
         Parameters
@@ -94,11 +94,11 @@ class XLSExporter(Exporter):
         nb_copy, resources = super(XLSExporter, self).from_notebook_node(nb, resources, **kw)
 
         output = BytesIO()
-        self.workbook = workbook or xlsxwriter.Workbook(output, {'nan_inf_to_errors': True})
+        self.workbook = input_workbook or xlsxwriter.Workbook(output, {'nan_inf_to_errors': True})
 
         self.msxlsstylereg = MdXlsStyleRegistry(self.workbook)
 
-        self.worksheet = worksheet or self.workbook.add_worksheet()
+        self.worksheet = input_worksheet or self.workbook.add_worksheet()
 
         self.row = 0
         for cellno, cell in enumerate(nb_copy.cells):
@@ -118,7 +118,7 @@ class XLSExporter(Exporter):
 
             self.row += 1
 
-        if (workbook != None):
+        if (input_workbook == None and workbook != None):
             self.workbook.close()
 
         xlsx_data = output.getvalue()
