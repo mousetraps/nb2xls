@@ -16,11 +16,11 @@ li_req = content.split('\n')
 install_requires = [e.strip() for e in li_req if len(e)]
 
 
-name = module
+name = 'nb2xls'
 name_url = name.replace('_', '-')
 
 packages = [module]
-version = meta_ns['__version__']
+version = '0.1.6-mouse'
 description = 'Export Jupyter notebook as an Excel xls file.'
 long_description = 'Export Jupyter notebook as an Excel xls file.'
 author = 'ideonate'
