@@ -13,8 +13,8 @@ with open(path) as meta_file:
 with open('requirements.txt', 'r') as f:
     content = f.read()
 li_req = content.split('\n')
-install_requires = [e.strip() for e in li_req if len(e)]
-
+# install_requires = [e.strip() for e in li_req if len(e)]
+install_requires = [ 'nbconvert>=5.0.0', 'xlsxwriter>=1.1.0', 'beautifulsoup4>=4.6.0', 'pypng>=0.0.18', 'mistune>=0.8', 'pandas', 'numpy']
 
 name = 'nb2xls'
 name_url = name.replace('_', '-')
